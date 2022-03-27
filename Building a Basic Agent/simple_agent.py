@@ -58,7 +58,7 @@ class SimpleAgent(base_agent.BaseAgent):
             
         if not self.supply_depot_built:
             if not self.scv_selected:
-                unit_type = obs.observation["screen"][_UNIT_TYPE]
+                unit_type = obs.observation["featurescreen"][_UNIT_TYPE]
                 unit_y, unit_x = (unit_type == _TERRAN_SCV).nonzero()
                 
                 target = [unit_x[0], unit_y[0]]
@@ -87,7 +87,7 @@ class SimpleAgent(base_agent.BaseAgent):
                 return actions.FunctionCall(_BUILD_BARRACKS, [_NOT_QUEUED, target])
         elif not self.barracks_rallied:
             if not self.barracks_selected:
-                unit_type = obs.observation["screen"][_UNIT_TYPE]
+                unit_type = obs.observation["feature_screen"][_UNIT_TYPE]
                 unit_y, unit_x = (unit_type == _TERRAN_BARRACKS).nonzero()
                 
                 if unit_y.any():
